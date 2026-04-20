@@ -1,0 +1,316 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
+:root {
+  --color-primary: #c5baff;
+  --color-danger: #ff7782;
+  --color-success: rgb(129, 233, 143);
+  --color-warning: #ffbb55;
+  --color-white: #fff;
+  --color-info-dark: #7d8da1;
+  --color-info-light: #fbfbfb;
+  --color-dark: #363949;
+  --color-light: rgba(132, 139, 200, 0.18);
+  --color-primary-variant: #aca1e4;
+  --color-dark-variant: #677483;
+  --color-background: linear-gradient(
+    -45deg,
+    #0f2027,
+    #203a43,
+    #2c5364,
+    #1a1a2e,
+    #16213e
+  );
+  --color-background-2: linear-gradient(
+    -45deg,
+    #4facfe,
+    #00f2fe,
+    #43e97b,
+    #38f9d7,
+    #a1c4fd
+  );
+  --card-border-radius: 2rem;
+  --border-radius-1: 0.4rem;
+  --border-radius-2: 0.8rem;
+  --border-radius-3: 1.2rem;
+  --card-padding: 1.8rem;
+  --padding-1: 1.2rem;
+
+  --box-shadow: 0 2rem 3rem var(--color-light);
+}
+
+/* Basic reset */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: 0;
+  appearance: none;
+  border: 0;
+  text-decoration: none;
+  list-style: none;
+  font-family: Montserrat, sans-serif;
+}
+
+body {
+  background: var(--color-background);
+  animation: gradientMove 12s ease infinite;
+  background-size: 400% 400%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-info-light);
+  width: 80%;
+  height: 80%;
+  margin: 100px auto;
+  border-radius: var(--border-radius-3);
+  transition: transform 0.5s ease, box-shadow 0.2s ease;
+}
+.container:hover {
+  transform: translateY(-3px); /* sube ligeramente */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* sombra tipo carta */
+}
+
+.container > h1 {
+  margin: 20px 0px;
+  padding: 20px 0px;
+}
+
+.container > .balance-container {
+  background: var(--color-background-2);
+  width: 90%;
+  border-radius: var(--border-radius-2);
+  padding: 1.5rem;
+  margin-bottom: 20px;
+  box-shadow: var(--box-shadow);
+  animation: gradientMove 12s ease infinite;
+  background-size: 400% 400%;
+  transition: all 300ms ease;
+}
+
+.container > .balance-container:hover {
+  transform: scale(1.01);
+  box-shadow: none;
+}
+
+.container > .balance-container h3 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 0px 0px 20px 0px;
+}
+.container > .balance-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.container > .balance-container div {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.balance-cards {
+  display: flex;
+  gap: 1rem;
+}
+
+.income,
+.expenses {
+  flex: 1;
+  padding: 1rem;
+  border-radius: var(--border-radius-1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--box-shadow);
+  transition: all 300ms ease;
+}
+
+.income:hover {
+  transform: scale(1.01);
+  box-shadow: none;
+}
+
+.expenses:hover {
+  transform: scale(1.01);
+  box-shadow: none;
+}
+
+.income p {
+  margin-bottom: 10px;
+}
+
+.income {
+  background: var(--color-info-light);
+  color: var(--color-success);
+}
+
+.expenses {
+  background: var(--color-info-light);
+  color: var(--color-danger);
+}
+.expenses p {
+  margin-bottom: 10px;
+}
+
+.transactions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 90%;
+  border-radius: var(--border-radius-2);
+}
+
+.transactions-container {
+  width: 50%;
+}
+.transactions h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.transactions-container > ul {
+  max-height: 200px;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.transactions-container > ul > .transaction {
+  background: var(--color-info-light);
+  border-right: 2px solid var(--color-success);
+  padding: 0.4rem 0.8rem;
+  margin-right: 12px;
+  margin-left: 6px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 2px;
+  border-radius: var(--border-radius-1);
+  font-size: 0.8rem;
+  box-shadow: var(--box-shadow);
+  transition: all 300ms ease;
+}
+.transactions-container > ul > .transaction:hover {
+  box-shadow: none;
+  transform: scale(1.02);
+}
+
+.transactions-container > ul > .transaction > .transaction-info {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+}
+.transaction .delete-btn {
+  margin-left: auto;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: 200ms ease;
+}
+/* oculto por defecto */
+.transactions-container > ul > .transaction i {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 200ms ease;
+  margin: none;
+  padding: none;
+}
+
+/* aparece al hacer hover en la tarjeta */
+.transactions-container > ul > .transaction:hover i {
+  opacity: 1;
+  visibility: visible;
+}
+.transactions-container > ul > .transaction h3 {
+  margin-right: 20px;
+}
+.transactions-container > ul > .transaction.exp {
+  border-right-color: var(--color-danger);
+}
+
+.add-transaction-container {
+  width: 50%;
+}
+.add-transaction-container h2 {
+  margin-bottom: 10px;
+}
+
+.container input {
+  width: 80%;
+  height: 2rem;
+  margin: 10px 0px 20px 0px;
+}
+
+.container input:focus {
+  border: 1px solid var(--color-primary);
+}
+
+small {
+  margin-bottom: 20px;
+  color: var(--color-primary-variant);
+  font-size: 0.7rem;
+}
+
+.transaction-btn {
+  margin-top: 20px;
+  padding: 8px 30px;
+  background: var(--color-primary);
+  box-shadow: var(--box-shadow);
+  font-weight: 500;
+  width: 100%;
+  transition: all 200ms ease;
+  cursor: pointer;
+}
+
+.transaction-btn:hover {
+  background: var(--color-primary-variant);
+  transform: translateY(-3px);
+  box-shadow: none;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 600px) {
+  .balance-cards {
+    flex-direction: column;
+  }
+
+  .transactions {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+
+  .transactions-container {
+    width: 80%;
+  }
+  .add-transaction-container {
+    margin-top: 30px;
+    width: 80%;
+  }
+}
+
+/* Animations */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
